@@ -38,7 +38,7 @@
 This error means that you already have a container with the same name. First of all, you have to check the status
 of this container. If it's running - you can use the existing one. Go to step 4 from the quickstart guide.
 
-To check the container's status, run the `docker ps -f name=my-sql --format '{{.ID}}' -a' command.
+To check the container's status, run the `docker ps -f name=my-sql --format '{{.ID}}' -a` command.
 ![](./imgs/docker-ps-mysql-status.png)
 
 If you see that the status is not `Running,` copy the container ID and remove it with the command `docker rm -f <CONTAINER_ID>`.

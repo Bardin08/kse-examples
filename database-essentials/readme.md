@@ -96,7 +96,7 @@ Congratulations! You just connected Rider with MySQL!
 2. Choose `MySQL` tab <br><br>
    ![](./imgs/vs-code-connect.png)
 3. Fill gaps in the fields as shown below 
-- Host: localhost
+- Host: `localhost`
 - Port: put port, selected when you created the server (by default `3306`)
 - Username: your user name, selected when you created the server (by default `root`)
 - Password: put here your very secret password

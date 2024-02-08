@@ -11,7 +11,8 @@
 
 2. Try to run `MySQL` server
    To run `The MySQL server, run the next command in the terminal
-   > docker run -e MYSQL_ROOT_PASSWORD=my-secret-pw -p 3306:3306 -v "${env:USERPROFILE}\.mysql:/var/lib/mysql" --name my-sql MySQL.
+
+`$ docker run -e MYSQL_ROOT_PASSWORD=my-secret-pw -p 3306:3306 -v "${env:USERPROFILE}\.mysql:/var/lib/mysql" --name my-sql mysql`.
 
 
 > [!IMPORTANT]

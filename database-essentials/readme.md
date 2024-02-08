@@ -52,3 +52,56 @@ Now, try to retry the Quickstart guide.
 
 To fix this issue, you must modify the running command to replace `3306:3306` with `3307:3306` and rerun the command.
 Then,, when you try to connect to the database from Rider (or any other UI tool), instead of port `3306`,, use `3307`.
+<br>
+
+## Connect local-based MySQL DB to JetBrains Rider
+### Start
+
+- Open your JetBrains Rider and create a New Project
+- Open ‘Tools’ menu, and select ‘Connect to Database’ option
+  ![image](https://github.com/Tabatskyi/Connect-MySQL-to-Rider/assets/115981919/1166ec1d-365a-472a-aa3a-0a686468b1b0)
+- Select ‘Add data source manually’
+- Press the ‘Next’ button
+  ![image](https://github.com/Tabatskyi/Connect-MySQL-to-Rider/assets/115981919/3f2ccc88-1ed2-4ac8-8cd3-830c434e454a)
+
+
+### First Step
+- In ‘Host’ field put ‘localhost’
+- Then put port, selected when you created server (by default ‘3306’) in the related field and press the ‘Next’ button
+  ![image](https://github.com/Tabatskyi/Connect-MySQL-to-Rider/assets/115981919/2e214a05-522a-4692-9a9e-6d9780f0781a)
+
+### Second Step
+- Authentication: select ‘User & Password’
+- User: put user name, selected when you created server (by default ‘root’)
+- Password: put here your very secret password
+- Save: responsible for what time Rider will remember your authentication credentials
+- Database: if you already have one, you can choose it here (if you don't, you will create one soon)
+- Press the ‘Connect to Database’ button
+  ![image](https://github.com/Tabatskyi/Connect-MySQL-to-Rider/assets/115981919/78612682-59dd-4cdc-bab7-a0433e56aea7)
+
+Congratulations! You just connected Rider with MySQL!
+<br>
+
+## Connect local-based MySQL DB to Visual Studio Code
+### Start
+- Navigate to ‘Extensions’ menu
+- In search field type ‘MySQL’
+  
+### Installing MySQL extension
+1. Choose the second one in the list
+2. Press ‘Install’ button
+![image](https://github.com/Tabatskyi/Connect-MySQL-to-VS-Code/assets/115981919/acfbb859-bf47-47c3-aca3-efbd2a83dc1b)
+
+### Connecting to MySQL database
+1. On the left side choose the newly appeared ‘Database’ menu, then press ‘Create connection’
+2. Choose ‘MySQL’ tab
+   ![image](https://github.com/Tabatskyi/Connect-MySQL-to-VS-Code/assets/115981919/40317160-b6ae-4587-b32b-d8c3f4c1b5fe)
+3. Fill gaps in the fields as shown below 
+- Host: localhost
+- Port: put port, selected when you created the server (by default ‘3306’)
+- Username: your user name, selected when you created the server (by default ‘root’)
+- Password: put here your very secret password
+- Database: if you haven't one on the server, just leave it blank
+- Press ‘Connect’ button
+  
+Congratulations! You just connected Visual Studio Code with MySQL!

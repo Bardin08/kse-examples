@@ -52,7 +52,7 @@ Now, try to retry the Quickstart guide.
 
 To fix this issue, you must modify the running command to replace `3306:3306` with `3307:3306` and rerun the command.
 Then,, when you try to connect to the database from Rider (or any other UI tool), instead of port `3306`,, use `3307`.
-<br>
+<hr>
 
 ## Connect local-based MySQL DB to JetBrains Rider
 ### Start
@@ -80,7 +80,7 @@ Then,, when you try to connect to the database from Rider (or any other UI tool)
   ![image](https://github.com/Tabatskyi/Connect-MySQL-to-Rider/assets/115981919/78612682-59dd-4cdc-bab7-a0433e56aea7)
 
 Congratulations! You just connected Rider with MySQL!
-<br>
+<hr>
 
 ## Connect local-based MySQL DB to Visual Studio Code
 ### Start

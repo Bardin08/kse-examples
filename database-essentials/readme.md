@@ -11,15 +11,14 @@
 
 2. Try to run `MySQL` server
    To run `The MySQL server, run the next command in the terminal
-   > docker run -e MYSQL_ROOT_PASSWORD=my-secret-pw -p 3306:3306 -v "${env:USERPROFILE}\.mysql:/var/lib/mysql" --name my-sql mysql
+   > docker run -e MYSQL_ROOT_PASSWORD=my-secret-pw -p 3306:3306 -v "${env:USERPROFILE}\.mysql:/var/lib/mysql" --name my-sql MySQL.
 
-   > ![IMPORTANT]
-   > This command is a Windows-based command. To run it on Unix like system, you have to create `.mysql`
-   > directory and set path to instead of `${env:USERPROFILE}\.mysql`. On Linux/MacOS, you have to create the directory `.mysql` at
-   > the `%USERPROFILE%`.
-   >
-   > To open `%USERPROFILE%` directory press Win+R and paste `%USERPROFILE%` to the opened window. Then press `OK`
-   > ![](./imgs/win-r.png)
+
+> [!IMPORTANT]
+> This command is a Windows-based command.
+> You must create the directory `.mysql` on Windows at the `%USERPROFILE%`. To open the `%USERPROFILE%` directory, press Win+R and paste `%USERPROFILE%` to the opened window. Then press `OK`
+>
+> To run it on a Unix-like system, create the `.mysql` directory and set the path instead of `${env:USERPROFILE}\.mysql`. 
 
 3. If an instance of MySQL started correctly in the terminal, you have to see the following output:
    ![](./imgs/mysql-instance-running.png)

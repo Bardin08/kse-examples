@@ -31,27 +31,33 @@
    | root     | my-secret-pw |
 
 
-## Errors Handling
+<details>
+  <summary>
+      <h2>Errors Handling</h2>
+  </summary>
 
-### Conflict. The container name "/my-sql" is already in use
-![](./imgs/my-sql-already-in-use.png)
+   ### Conflict. The container name "/my-sql" is already in use
+   ![](./imgs/my-sql-already-in-use.png)
+   
+   This error means that you already have a container with the same name. First of all, you have to check the status
+   of this container. If it's running - you can use the existing one. Go to step 4 from the quickstart guide.
+   
+   To check the container's status, run the `docker ps -f name=my-sql --format '{{.ID}}' -a` command.
+   ![](./imgs/docker-ps-mysql-status.png)
+   
+   If you see that the status is not `Running,` copy the container ID and remove it with the command `docker rm -f <CONTAINER_ID>`.
+   ![](./imgs/docker-rm.png)
+   
+   Now, try to retry the Quickstart guide.
+   
+   ### Bind for 0.0.0.0:3306 failed: port is already allocated
+   ![](./imgs/port-already-in-use.png)
+   
+   To fix this issue, you must modify the running command to replace `3306:3306` with `3307:3306` and rerun the command.
+   Then,, when you try to connect to the database from Rider (or any other UI tool), instead of port `3306`,, use `3307`.
+</details>
 
-This error means that you already have a container with the same name. First of all, you have to check the status
-of this container. If it's running - you can use the existing one. Go to step 4 from the quickstart guide.
 
-To check the container's status, run the `docker ps -f name=my-sql --format '{{.ID}}' -a` command.
-![](./imgs/docker-ps-mysql-status.png)
-
-If you see that the status is not `Running,` copy the container ID and remove it with the command `docker rm -f <CONTAINER_ID>`.
-![](./imgs/docker-rm.png)
-
-Now, try to retry the Quickstart guide.
-
-### Bind for 0.0.0.0:3306 failed: port is already allocated
-![](./imgs/port-already-in-use.png)
-
-To fix this issue, you must modify the running command to replace `3306:3306` with `3307:3306` and rerun the command.
-Then,, when you try to connect to the database from Rider (or any other UI tool), instead of port `3306`,, use `3307`.
 <hr>
 
 ## Connect local-based MySQL DB to JetBrains Rider

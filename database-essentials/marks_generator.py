@@ -15,21 +15,23 @@ def generate_marks_inserts(num_students, num_subjects, min_marks_per_subject, ma
                     mark = random.randint(60, 100)  # Assuming marks range from 60 to 100
                     marks.append(f"({student_id}, {subject_id}, {mark})")
 
-                    if len(marks) > 100000:
+                    if len(marks) > min_marks_per_subject:
                         row = ", ".join(marks) + ",\n\t"
                         file.write(row)
                         file.flush()
-                        print("flushed! +500k")
+                        print(f"Flushed! +{min_marks_per_subject} records")
 
                         marks.clear()
 
+        file.flush()
         file.write('(1, 1, 100);')
+
 
 # Example usage
 num_students = 25
 num_subjects = 5
-min_marks_per_subject = 100000  # Minimum number of marks per subject
-max_marks_per_subject = 200000  # Maximum number of marks per subject to match the example formatting
+min_marks_per_subject = 15  # Minimum number of marks per subject
+max_marks_per_subject = 20  # Maximum number of marks per subject to match the example formatting
 
 insert_command = generate_marks_inserts(num_students, num_subjects, min_marks_per_subject, max_marks_per_subject)
 print(insert_command)

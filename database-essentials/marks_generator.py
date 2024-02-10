@@ -2,33 +2,34 @@ import random
 
 
 def generate_marks_inserts(num_students, num_subjects, min_marks_per_subject, max_marks_per_subject):
-    base_command = "INSERT INTO marks (student_id, subject_id, mark) VALUES\n\t"
-    inserts = list(list())
-    for student_id in range(1, num_students + 1):
-        inserts.append([])
+    with open('example.sql', 'w') as file:
+        file.write("INSERT INTO marks (student_id, subject_id, mark) VALUES\n\t")
 
-        for subject_id in range(1, num_subjects + 1):
-            num_marks = random.randint(min_marks_per_subject,
-                                       max_marks_per_subject)  # Determine the number of marks for this subject
-            for _ in range(num_marks):  # Generate each mark
-                mark = random.randint(60, 100)  # Assuming marks range from 60 to 100
-                inserts[student_id - 1].append(f"({student_id}, {subject_id}, {mark})")
+        for student_id in range(1, num_students + 1):
 
-    rows = []
-    for student_marks in inserts:
-        row = ", ".join(student_marks)
-        rows.append(row)
+            for subject_id in range(1, num_subjects + 1):
+                num_marks = random.randint(min_marks_per_subject,
+                                           max_marks_per_subject)  # Determine the number of marks for this subject
+                marks = []
+                for _ in range(num_marks):  # Generate each mark
+                    mark = random.randint(60, 100)  # Assuming marks range from 60 to 100
+                    marks.append(f"({student_id}, {subject_id}, {mark})")
 
-    formatted_inserts = ",\n\t".join(rows)
-    command = base_command + formatted_inserts + ";"
-    return command
+                    if len(marks) > 100000:
+                        row = ", ".join(marks) + ",\n\t"
+                        file.write(row)
+                        file.flush()
+                        print("flushed! +500k")
 
+                        marks.clear()
+
+        file.write('(1, 1, 100);')
 
 # Example usage
 num_students = 25
 num_subjects = 5
-min_marks_per_subject = 15  # Minimum number of marks per subject
-max_marks_per_subject = 20  # Maximum number of marks per subject to match the example formatting
+min_marks_per_subject = 100000  # Minimum number of marks per subject
+max_marks_per_subject = 200000  # Maximum number of marks per subject to match the example formatting
 
 insert_command = generate_marks_inserts(num_students, num_subjects, min_marks_per_subject, max_marks_per_subject)
 print(insert_command)

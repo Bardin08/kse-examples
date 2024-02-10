@@ -33,5 +33,5 @@ num_subjects = 5
 min_marks_per_subject = 15  # Minimum number of marks per subject
 max_marks_per_subject = 20  # Maximum number of marks per subject to match the example formatting
 
-insert_command = generate_marks_inserts(num_students, num_subjects, min_marks_per_subject, max_marks_per_subject)
-print(insert_command)
+generate_marks_inserts(num_students, num_subjects, min_marks_per_subject, max_marks_per_subject)
+print("Done!")

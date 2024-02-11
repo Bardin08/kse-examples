@@ -10,7 +10,7 @@ DEFAULT_CHUNK_SIZE = 10000
 
 
 def generate_marks_inserts():
-    with open('scripts/insert_marks.sql', 'w') as file:
+    with open('../scripts/insert_marks.sql', 'w') as file:
         file.write("INSERT INTO marks (student_id, subject_id, mark) VALUES\n\t")
 
         chunk_size = MIN_MARKS_PER_SUBJECT if DEFAULT_CHUNK_SIZE >= MIN_MARKS_PER_SUBJECT else DEFAULT_CHUNK_SIZE

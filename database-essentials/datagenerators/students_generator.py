@@ -27,7 +27,7 @@ def generate_student_name():
 
 
 def generate_students_inserts():
-    with open(f'scripts/insert_students.sql', 'w') as file:
+    with open(f'../scripts/insert_students.sql', 'w') as file:
         file.write("INSERT INTO students (student_name, group_id) VALUES\n\t")
 
         chunk_size = STUDENTS_PER_GROUP if DEFAULT_CHUNK_SIZE >= STUDENTS_PER_GROUP else DEFAULT_CHUNK_SIZE

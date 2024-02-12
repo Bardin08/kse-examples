@@ -1,6 +1,3 @@
-CREATE SCHEMA test;
-USE test;
-
 CREATE TABLE study_groups
 (
     group_id   INT AUTO_INCREMENT PRIMARY KEY,

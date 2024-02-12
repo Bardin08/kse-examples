@@ -138,7 +138,7 @@ FROM (SELECT m.subject_id, avg(m.mark) as avg_mark
 -- # indicating popularity or mandatory evaluation.
 
 SELECT m.subject_id, count(*) as marks_num
-FROM kse_practice_db.marks m
+FROM marks m
 GROUP BY m.subject_id
 HAVING marks_num = (SELECT MIN(marks_amount.amount)
                     FROM (SELECT COUNT(m.mark) as amount
@@ -161,7 +161,7 @@ FROM (SELECT m.subject_id, avg(m.mark) as avg_mark
 SELECT s.subject_name
 FROM (SELECT m.subject_id, avg(m.mark) as avg_mark
       FROM marks m
-        JOIN kse_practice_db.subjects sbj ON sbj.subject_id = m.subject_id
+               JOIN subjects sbj ON sbj.subject_id = m.subject_id
       GROUP BY m.subject_id
       HAVING avg_mark < (SELECT avg(m.mark) FROM marks m)) s_id
          JOIN subjects s ON s_id.subject_id = s.subject_id;
@@ -195,13 +195,34 @@ GROUP BY student_id;
 
 -- 2. List Subjects with the Highest Average Mark
 -- This query lists subjects that have the highest average mark across all subjects.
+SELECT m.subject_id, COUNT(*) as marks_num
+FROM kse_practice_db.marks m
+GROUP BY m.subject_id
+HAVING marks_num = (SELECT MAX(marks_amount.amount)
+                    FROM (SELECT COUNT(m.mark) as amount
+                          FROM marks m
+                          GROUP BY m.subject_id) marks_amount)
+ORDER BY marks_num;
+
 
 -- 3. Identify Groups with No Failing Marks
 -- This query identifies study groups where no student has received a mark below 50 in any subject.
+SELECT group_id
+FROM study_groups
+WHERE group_id NOT IN (SELECT DISTINCT s.group_id
+                       FROM students s
+                                JOIN marks m ON s.student_id = m.student_id
+                       WHERE m.mark < 45);
 
--- 4. Students with Marks in Top 10% for Any Subject
--- This query selects students who have marks in the top 10% for any subject.
 
--- 5. Average Marks of Students Who Also Take a Specific Subject
+-- 4. Average Marks of Students Who Also Take a Specific Subject
 -- This query calculates the average marks of students who are also enrolled in a specific subject (e.g., subject_id = 2).
-
+SELECT m.student_id, AVG(m.mark) AS avg_mark
+FROM marks m
+WHERE m.student_id IN (
+    SELECT DISTINCT m2.student_id
+    FROM marks m2
+    WHERE m2.subject_id = 2
+)
+GROUP BY m.student_id
+LIMIT 5;

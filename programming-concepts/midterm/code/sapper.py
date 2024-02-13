@@ -41,23 +41,23 @@ def get_lives_amount():
 
 
 def get_mines_positions():
-    mines_positions = set()
-    while len(mines_positions) < mines_amount:
-        mines_positions.add(
+    positions = set()
+    while len(positions) < mines_amount:
+        positions.add(
             (
                 random.randint(0, GAME_FIELD_SIZE - 1),
                 random.randint(0, GAME_FIELD_SIZE - 1)
             ))
-    return mines_positions
+    return positions
 
 
-def do_step(lives_left, cells_left):
+def do_step(lives_left, cells_left, mines):
     move_x, move_y = map(int, input(f"Enter row and col split by space ({lives_left}❤️)").split())
     move_x -= 1
     move_y -= 1
-    if (move_x, move_y) in mines_positions:
+    if (move_x, move_y) in mines:
         game_field[move_x][move_y] = MINE
-        mines_positions.remove((move_x, move_y))
+        mines.remove((move_x, move_y))
         lives_left -= 1
     else:
         game_field[move_x][move_y] = SPACE
@@ -80,7 +80,7 @@ while True:
     safe_moves = GAME_FIELD_SIZE ** 2 - mines_amount
 
     while not (lives <= 0 or safe_moves <= 0):
-        lives, safe_moves = do_step(lives, safe_moves)
+        lives, safe_moves = do_step(lives, safe_moves, mines_positions)
 
     if lives > 0:
         print("You win! 👏")

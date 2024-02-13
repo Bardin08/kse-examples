@@ -10,28 +10,37 @@ MINES_LIVES = {
     1: 1
 }
 
-while True:
-    game_field = [
+
+def print_game_field(field):
+    print("\n".join([" ".join(row) for row in field]))
+
+
+def get_game_field():
+    return [
         ['-', '-', '-', '-'],
         ['-', '-', '-', '-'],
         ['-', '-', '-', '-'],
-        ['-', '-', '-', '-'],
+        ['-', '-', '-', '-']
     ]
 
-    print("\n".join([" ".join(row) for row in game_field]))
 
-    mines_amount = input("Enter mines amount: ")
-    while not mines_amount.isdigit():
+def get_mines_amount() -> int:
+    amount = input("Enter mines amount: ")
+    while not amount.isdigit():
         print("Mines amount is not valid")
-        mines_amount = input("Enter mines amount: ")
-    mines_amount = int(mines_amount)
+        amount = input("Enter mines amount: ")
+    return int(amount)
 
-    lives = 0
+
+def get_lives_amount():
+    amount = 0
     for key, value in MINES_LIVES.items():
         if key >= mines_amount:
-            lives = value
-    print(f"Mines: {mines_amount}, Lives: {lives}")
+            amount = value
+    return amount
 
+
+def get_mines_positions():
     mines_positions = set()
     while len(mines_positions) < mines_amount:
         mines_positions.add(
@@ -39,25 +48,39 @@ while True:
                 random.randint(0, GAME_FIELD_SIZE - 1),
                 random.randint(0, GAME_FIELD_SIZE - 1)
             ))
+    return mines_positions
+
+
+def do_step(lives_left, cells_left):
+    move_x, move_y = map(int, input(f"Enter row and col split by space ({lives_left}❤️)").split())
+    move_x -= 1
+    move_y -= 1
+    if (move_x, move_y) in mines_positions:
+        game_field[move_x][move_y] = MINE
+        mines_positions.remove((move_x, move_y))
+        lives_left -= 1
+    else:
+        game_field[move_x][move_y] = SPACE
+        cells_left -= 1
+    print("\n".join([" ".join(row) for row in game_field]))
+    return lives_left, cells_left
+
+
+while True:
+    game_field = get_game_field()
+    print_game_field(game_field)
+
+    mines_amount = get_mines_amount()
+    lives = get_lives_amount()
+    print(f"Mines: {mines_amount}, Lives: {lives}")
+
+    mines_positions = get_mines_positions()
     print(f"Mines positions: {mines_positions}")
 
     safe_moves = GAME_FIELD_SIZE ** 2 - mines_amount
 
     while not (lives <= 0 or safe_moves <= 0):
-        move_x, move_y = map(int, input(f"Enter row and col split by space ({lives}❤️)").split())
-
-        move_x -= 1
-        move_y -= 1
-
-        if (move_x, move_y) in mines_positions:
-            game_field[move_x][move_y] = MINE
-            mines_positions.remove((move_x, move_y))
-            lives -= 1
-        else:
-            game_field[move_x][move_y] = SPACE
-            safe_moves -= 1
-
-        print("\n".join([" ".join(row) for row in game_field]))
+        lives, safe_moves = do_step(lives, safe_moves)
 
     if lives > 0:
         print("You win! 👏")

@@ -2,6 +2,49 @@
 
 <details>
   <summary>
+      <h2>Installing on your system</h2>
+  </summary>
+
+  **1. Download MySQL Server:**
+
+   Visit the official MySQL website [here](https://dev.mysql.com/downloads/mysql/) and select the appropriate version of the **MySQL Community Server** for your operating system (Windows, macOS, Linux). For Windows 10, we'll use the .msi installer as an example.
+
+**2. Install MySQL Server:**
+
+   - Run the downloaded file to begin the MySQL Server setup process.
+   - Follow the on-screen instructions provided for your operating system. For most cases, sticking with the default settings is recommended. However, pay attention to the following key steps:
+
+     - Choose the "Typical Setup Type" option.
+     
+       ![Typical Setup Type](https://github.com/Bardin08/kse-examples/assets/145005277/fe6fc47e-f762-476c-b06c-a45f0640c5cc)
+     
+     - Once the installation wizard is complete, ensure the "Run MySQL Configurator" option at the bottom is selected. (You can run MySQL Configurator from the Start Menu either)
+       
+       ![Run MySQL Configurator](https://github.com/Bardin08/kse-examples/assets/145005277/566b1fa4-a71b-49f8-8e99-1aa76721118b)
+
+     - Now, you are creating a certain server. As it was said, keeping everything default is fine. Here you can change the Port of your server (3306 - default)
+    
+       ![image_2024-02-09_22-39-37 (3)](https://github.com/Bardin08/kse-examples/assets/145005277/637a81bf-093a-4ba2-a096-faada1a60c27)
+
+     - Enter the password for the root account. Please !**remember**! to store this password in a secure place.
+       
+       ![image_2024-02-09_22-39-37 (4)](https://github.com/Bardin08/kse-examples/assets/145005277/6f750aa1-6501-404b-8be3-10e00285f134)
+
+     - Follow these options (they are default as well):
+       
+       ![image_2024-02-09_22-39-37 (5)](https://github.com/Bardin08/kse-examples/assets/145005277/bf792f77-ae4e-4cff-b16b-bb26a5f9f551)
+
+       ![image_2024-02-09_22-39-37 (6)](https://github.com/Bardin08/kse-examples/assets/145005277/a605458e-8462-4957-bce2-1f006a4611ba)
+
+       ![image_2024-02-09_22-39-37 (7)](https://github.com/Bardin08/kse-examples/assets/145005277/55243580-bd88-4442-b0fc-897594f465ba)
+  
+     - Execute the configuration, wait for completion, and you're done!
+     - Connect your MySQL server to your database in Rider or your preferred IDE.
+      
+</details>
+
+<details>
+  <summary>
       <h2>Docker</h2>
   </summary>
 

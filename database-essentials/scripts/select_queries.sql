@@ -167,7 +167,7 @@ FROM (SELECT m.subject_id, avg(m.mark) as avg_mark
          JOIN subjects s ON s_id.subject_id = s.subject_id;
 
 
--- 4. Find Students with Above Average Marks in a Specific Subject
+-- 1. Find Students with Above Average Marks in a Specific Subject
 -- This query finds students who have scored above the average mark in a specific subject (e.g., subject_id = 1).
 
 SELECT m.student_id, avg(m.mark) as avg_mark
@@ -226,3 +226,47 @@ WHERE m.student_id IN (
 )
 GROUP BY m.student_id
 LIMIT 5;
+
+
+-- UNION / UNION ALL --
+SELECT student_name FROM students WHERE group_id = 1
+UNION -- distinct
+SELECT student_name FROM students WHERE group_id = 2;
+
+SELECT student_name FROM students WHERE group_id = 1
+UNION ALL -- include duplicates
+SELECT student_name FROM students WHERE group_id = 2;
+
+
+SELECT s.student_name
+FROM marks
+    INNER JOIN kse_practice_db.students s ON marks.student_id = s.student_id
+WHERE subject_id = 1
+INTERSECT
+SELECT s.student_name
+FROM marks
+    INNER JOIN kse_practice_db.students s ON marks.student_id = s.student_id
+WHERE subject_id = 2;
+
+
+-- UNION requests:
+
+-- 1. List All Unique Subjects Taken by Students in Two Specific Groups:
+-- This query finds all unique subjects taken by students in two different study groups,
+-- identified by their group_id.
+
+-- 2. Combine Students with High Marks in Mathematics and Physics:
+-- This query lists students who have high marks (e.g., greater than 75) in either mathematics or physics.
+
+
+-- INTERSECT requests:
+-- 1. Students Enrolled in Both Mathematics and Physics:
+-- This finds students who are enrolled and have marks in both mathematics and physics.
+
+
+-- JOINS
+-- 4. Generate all possible pairs for students on the same group
+
+SELECT A.student_name AS Student1, B.student_name AS Student2
+FROM students A, students B
+WHERE A.group_id = B.group_id AND A.student_id < B.student_id;

@@ -142,7 +142,7 @@ ATTEMPTS = 6
 words = list(fetch_words(5, 5))
 
 # ---
-GAMES_AMOUNT = 1
+GAMES_AMOUNT = 100_000
 games = 0
 wins = 0
 

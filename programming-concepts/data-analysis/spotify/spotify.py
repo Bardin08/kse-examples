@@ -1,6 +1,7 @@
 import csv
 
 
+# [1, 2, [3, [4, [5]]]] -> [1, 2, 3, 4, 5]
 def flat(input_list):
     def flat_internal(flatten_list, elem):
         if not (isinstance(elem, list) or isinstance(elem, tuple)):

@@ -1,6 +1,11 @@
 GIVEN_NUMBER = 328
 BASE = 5
 
+# 9A7x16 ->
+# 7*16^0 + A*16^1 + 9*16^2 ->
+# 7+160+2304 ->
+# 2471x10
+
 digits = []
 current = GIVEN_NUMBER
 while current != 0:

@@ -90,4 +90,5 @@ def clean_csv_1():
         print("JSON file not exists")
 
 
+json_to_csv_raw()
 clean_csv_1()

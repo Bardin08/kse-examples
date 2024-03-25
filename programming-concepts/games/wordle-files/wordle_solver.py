@@ -84,7 +84,11 @@ def game_iteration(words_list) -> bool:
 
         if user_guess == secret_word:
             print(f"You won! {GREEN + user_guess + COLOR_END}")
-            metadata = get_metadata(known_positions, known_letters, banned_letters, candidates_status)
+            metadata = get_metadata(
+                known_positions,
+                known_letters,
+                banned_letters,
+                candidates_status)
 
             save_stats(
                 metadata,
@@ -142,7 +146,7 @@ ATTEMPTS = 6
 words = list(fetch_words(5, 5))
 
 # ---
-GAMES_AMOUNT = 100_000
+GAMES_AMOUNT = 1000
 games = 0
 wins = 0
 

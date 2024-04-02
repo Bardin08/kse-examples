@@ -16,13 +16,13 @@ def validate_number(input_number: str, nbase: int):
     named `list_remainders`, where the index corresponds to the digit value.
 
     :param input_number: A string containing the expression to validate. Each character in this string is considered a
-     digit.
+                         digit.
     :param nbase: An integer specifying the base of the numbering system. This determines which digits are valid.
                   For example, for base 10, valid digits are 0 through 9.
     :return: A boolean value. Returns True if all characters in the expression are valid digits for the specified base.
              Returns False otherwise.
     """
-    results = map(lambda x: x in VALID_CHARS[:nbase], input_number)
+    results = map(lambda x: x in VALID_CHARS[:nbase], str(input_number))
     return all(results)
 
 
@@ -42,7 +42,7 @@ def convert_to_base(input_number: int, target_base: int) -> str:
      significant to the least significant.
     """
     if input_number == 0:
-        return "0"  # Handle the special case of input_number being 0
+        return "0"
 
     digits = []
     current = int(input_number)
@@ -52,7 +52,7 @@ def convert_to_base(input_number: int, target_base: int) -> str:
         current //= target_base
         digits.append(str(remainder))
 
-    digits.reverse()  # Reverse the list to have the most significant digit at the beginning
+    digits.reverse()
     return "".join(digits)
 
 
@@ -80,7 +80,7 @@ def convert_to_dec(input_number: str, base: int) -> int:
 # ---
 
 
-if validate_number(str(GIVEN_NUMBER), 10):
+if validate_number(GIVEN_NUMBER, 10):
     converted_number = convert_to_base(GIVEN_NUMBER, TARGET_BASE)
     restored_number = convert_to_dec(converted_number, TARGET_BASE)
 
